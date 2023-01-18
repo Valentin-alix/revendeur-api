@@ -4,11 +4,11 @@ const app = express()
 const port = 3000
 const urlMockapi = 'https://615f5fb4f7254d0017068109.mockapi.io/api/v1';
 
-app.get('/', (req, res) => {
+app.get('/', (req : any, res : any) => {
   res.send('Hello World!')
 })
 
-app.get('/*', (req, res) => {
+app.get('/*', (req : any, res : any) => {
   axios.get(`${urlMockapi}${req.originalUrl}`)
     .then((resp) => {
       res.set('Cache-control', 'public, max-age=86400');
