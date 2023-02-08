@@ -1,0 +1,82 @@
+{
+    "info": {
+        "_postman_id": "abcd1234-5678-abcd-1234-5678abcd1234",
+        "name": "Revendeur API",
+        "description": "A collection to test the Revendeur API endpoint",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get Product by ID",
+            "request": {
+                "url": "http://localhost:3000/products/2",
+                "method": "GET",
+                "description": "Get product details by ID"
+            },
+            "response": [
+                {
+                    "status": "200",
+                    "code": 200,
+                    "name": "Success",
+                    "description": "The product details were retrieved successfully",
+                    "schema": [
+                        {
+                            "$ref": "#/definitions/Product"
+                        }
+                    ]
+                },
+                {
+                    "status": "404",
+                    "code": 404,
+                    "name": "Not Found",
+                    "description": "The product with the specified ID was not found"
+                }
+            ]
+        }
+    ],
+    "definitions": {
+        "Product": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "object",
+                    "properties": {
+                        "price": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "color": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "price",
+                        "description",
+                        "color"
+                    ]
+                },
+                "stock": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "details",
+                "stock",
+                "id"
+            ]
+        }
+    }
+}
