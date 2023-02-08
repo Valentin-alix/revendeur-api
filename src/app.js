@@ -8,8 +8,9 @@ var urlMockapi = 'https://615f5fb4f7254d0017068109.mockapi.io/api/v1';
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
-app.get('/*', function (req, res) {
-    axios_1["default"].get("".concat(urlMockapi).concat(req.originalUrl))
+app.get('/products/:id?', function (req, res) {
+    var _a;
+    axios_1["default"].get("".concat(urlMockapi, "/products/").concat((_a = req.params.id) !== null && _a !== void 0 ? _a : ''))
         .then(function (resp) {
         res.set('Cache-control', 'public, max-age=86400');
         res.json(resp.data);

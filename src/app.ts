@@ -8,8 +8,8 @@ app.get('/', (req : any, res : any) => {
   res.send('Hello World!')
 })
 
-app.get('/*', (req : any, res : any) => {
-  axios.get(`${urlMockapi}${req.originalUrl}`)
+app.get('/products/:id?', (req : any, res : any) => {
+  axios.get(`${urlMockapi}/products/${req.params.id ?? ''}`)
     .then((resp) => {
       res.set('Cache-control', 'public, max-age=86400');
       res.json(resp.data);
