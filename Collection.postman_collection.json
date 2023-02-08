@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "abcd1234-5678-abcd-1234-5678abcd1234",
+        "_postman_id": "49bf2d48-45c3-44a3-a7f2-ca3d86a1050e",
         "name": "Revendeur API",
         "description": "A collection to test the Revendeur API endpoint",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -9,7 +9,7 @@
         {
             "name": "Get Product by ID",
             "request": {
-                "url": "http://localhost:3000/products/2",
+                "url": "{{base_url}}/products/2",
                 "method": "GET",
                 "description": "Get product details by ID"
             },
