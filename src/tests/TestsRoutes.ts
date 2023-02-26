@@ -2,13 +2,6 @@ import request from 'supertest'
 import { server } from '../app'
 import { removeUser } from '../Database'
 
-describe('login', () => {
-  it('test get customers', async () => {
-    const res = await request(server).post('/login/').send({ uniq_key: 'password' })
-    expect(res.statusCode).toBe(401)
-  })
-})
-
 // Test login route
 describe('POST /login', () => {
   it('Should return 401 when email is missing', async () => {
@@ -133,12 +126,6 @@ describe('GET /users', () => {
 })
 
 afterAll(() => {
-  removeUser('test@example.com')
-    .then((userId) => {
-      console.log('User test@example.com successfuly added')
-    })
-    .catch((err) => {
-      console.log(`User can't be removed :  ${err}`)
-    })
-  server.close()
+  removeUser('test@example.com');
+  server.close();
 })

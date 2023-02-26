@@ -5,7 +5,7 @@ import { addUser, getAllUsers, getUserByEmailAndUniqKey } from './Database'
 
 require('dotenv').config()
 
-// Initialisation de l'application Express
+// Init Express app
 const app = express()
 
 const bodyParser = require('body-parser')
@@ -35,20 +35,21 @@ function authenticateToken (req: any, res: any, next: NextFunction) {
   })
 }
 
+// Access token
 function generateAccessToken (user: any): string {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: '1800s' })
 }
 
-// Login to get access token
+// ROUTE : Login to get access token
 app.post('/login', (req: any, res: any) => {
   // Vérifie que la propriété email existe et n'est pas nulle
-  if (req.body.email === null) {
+  if (req.body.email == null) {
     res.status(401).send('Please provide an email')
     return
   }
 
   // Vérifie que la propriété password existe et n'est pas nulle
-  if (req.body.uniq_key === null) {
+  if (req.body.uniq_key == null) {
     res.status(401).send('Please provide a uniq_key')
     return
   }
@@ -67,7 +68,7 @@ app.post('/login', (req: any, res: any) => {
   })
 })
 
-// Retrieve products or one product
+// ROUTE : Retrieve products or one product
 app.get('/products/:id?', authenticateToken, (req: any, res: any) => {
   axios.get(`${urlMockapi}/products/${req.params.id ?? ''}`)
     .then((resp) => {
@@ -80,7 +81,7 @@ app.get('/products/:id?', authenticateToken, (req: any, res: any) => {
     })
 })
 
-// Add user in db
+// ROUTE : Add user
 app.post('/addUser', authenticateToken, (req: any, res: any) => {
   // Vérifie que la propriété email existe et n'est pas nulle
   if (req.body.email == null) {
@@ -102,7 +103,7 @@ app.post('/addUser', authenticateToken, (req: any, res: any) => {
     })
 })
 
-// Display all users
+// ROUTE : Display all users
 app.get('/users', authenticateToken, (req: any, res: any) => {
   getAllUsers()
     .then((users) => {
@@ -114,5 +115,5 @@ app.get('/users', authenticateToken, (req: any, res: any) => {
 })
 
 export const server = app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Revendeur API listening on port ${port}`)
 })
