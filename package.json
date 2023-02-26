@@ -27,10 +27,10 @@
     "lint": "npx ts-standard src/**/*.ts",
     "lint:fix": "npx ts-standard --fix",
     "deploy": "node . &",
-    "test": "./node_modules/jest/bin/jest.js --coverage",
+    "test": "jest --coverage",
     "start": "tsc-watch --onSuccess \"node .\""
   },
   "author": "",
   "license": "ISC",
-  "description": "API revendeur"
+  "description": "Revendeur API"
 }
