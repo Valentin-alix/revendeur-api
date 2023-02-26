@@ -27,7 +27,7 @@
     "lint": "npx ts-standard src/**/*.ts",
     "lint:fix": "npx ts-standard --fix",
     "deploy": "node . &",
-    "test": "jest --coverage",
+    "test": "node_modules/jest/bin/jest.js --coverage",
     "start": "tsc-watch --onSuccess \"node .\""
   },
   "author": "",
