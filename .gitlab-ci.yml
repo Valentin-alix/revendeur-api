@@ -1,0 +1,50 @@
+stages:
+  - installDeps
+  - test
+  - quality
+  - deploy
+
+default:
+  image: node:19-alpine
+  cache:
+    policy: pull
+    key: 'dependencies'
+    paths:
+      - node_modules/
+      - package-lock.json
+
+installDeps-job:
+  stage: installDeps
+  script:
+    - npm install
+  cache:
+    policy: pull-push
+  only:
+  - main
+  - dev
+
+test-job:
+  stage: test
+  script:
+    - npm run test
+  only:
+    - main
+    - dev
+
+quality-job:
+  stage: quality
+  script:
+    - npm run lint
+  only:
+    - main
+    - dev
+  allow_failure: true
+
+deploy-job:
+  tags:
+    - revendeur_api
+  stage: deploy
+  script:
+    - npm run deploy
+  only:
+    - main
